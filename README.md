@@ -2,6 +2,25 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## netflix-gpt
+-create react app using command [npx create-react-app netflix-gpt](http://localhost:3000)
+-configured tailwind css
+
+## features
+-login/sign-up 
+    -Sign In
+-Browse (after authentication)
+    -Header
+    -main movie
+        -trailer in background
+        -title and Description
+        -movie suggestions
+            -movielists * N
+-netfilx-gpt
+    -search bar
+    -movie suggestions
+
+
 ## Available Scripts
 
 In the project directory, you can run:
