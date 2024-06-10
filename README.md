@@ -5,7 +5,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## netflix-gpt
 -create react app using command [npx create-react-app netflix-gpt](http://localhost:3000)
 -configured tailwind css
-
+-header
+-login form
+-sign up from
+-form validation
+-useRef hook
+-firebase setup
+-Deploying our app to production
 ## features
 -login/sign-up 
     -Sign In
