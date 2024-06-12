@@ -1,14 +1,17 @@
 import React, { Fragment, useRef, useState } from "react";
 import Header from "./Header";
 import checkValidation from "../utils/validate";
-
+import createUserAuth from "../utils/createUserAuth";
+import checkUserAuth from "../utils/checkUserAuth";
+import { auth } from "../utils/firebase";
+import {  createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
   const fullName = useRef();
   const email = useRef();
   const password = useRef();
-  const handleClick = () => {
+  const handleClick = async () => {
     const data = isLoginForm
       ? {
           email: email?.current?.value,
@@ -21,6 +24,19 @@ const Login = () => {
         };
     const msg = checkValidation(data);
     setErrorMsg(msg)
+    if(!msg){
+     if(isLoginForm) {
+      const val =   checkUserAuth(data)
+      
+      
+     }else{
+      var a = await createUserAuth(data)
+      console.log(a.message,"dada")
+        
+     }
+
+    }
+    
     
   };
   return (
@@ -34,7 +50,7 @@ const Login = () => {
         className=" relative  bg-black w-1/4 m-auto p-12 right-0 left-0 top-40 bg-opacity-80"
       >
         <h1 className="font-bold text-2xl  text-white">
-          {isLoginForm ? "Sign In" : "Sign Up"}
+          {isLoginForm ? "Sign In" : "Sign Upwwa"}
         </h1>
         {!isLoginForm ? (
           <input
