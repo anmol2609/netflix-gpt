@@ -50,7 +50,7 @@ const Login = () => {
         className=" relative  bg-black w-1/4 m-auto p-12 right-0 left-0 top-40 bg-opacity-80"
       >
         <h1 className="font-bold text-2xl  text-white">
-          {isLoginForm ? "Sign In" : "Sign Upwwa"}
+          {isLoginForm ? "Sign Ina" : "Sign Upwwa"}
         </h1>
         {!isLoginForm ? (
           <input
