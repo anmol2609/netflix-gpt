@@ -12,6 +12,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -useRef hook
 -firebase setup
 -Deploying our app to production
+-create signin user account
+-Inplement signin user api
+-create user store with userSlice
+-onAuthStateChange we use from firebase to reduce use of dispatch function
+-implement signout
+-update profile
+-fetch movies from TMDB
 ## features
 -login/sign-up 
     -Sign In

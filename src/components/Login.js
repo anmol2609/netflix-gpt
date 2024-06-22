@@ -4,10 +4,15 @@ import checkValidation from "../utils/validate";
 import createUserAuth from "../utils/createUserAuth";
 import checkUserAuth from "../utils/checkUserAuth";
 import { auth } from "../utils/firebase";
-import {  createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {  createUserWithEmailAndPassword,signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { json, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [errorMsg, setErrorMsg] = useState(null);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const fullName = useRef();
   const email = useRef();
   const password = useRef();
@@ -26,13 +31,46 @@ const Login = () => {
     setErrorMsg(msg)
     if(!msg){
      if(isLoginForm) {
-      const val =   checkUserAuth(data)
+      const {email,password} = data
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        setErrorMsg("user sign in")
+        navigate('/browse')
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMsg(errorMessage)
+      });
       
       
      }else{
-      var a = await createUserAuth(data)
-      console.log(a.message,"dada")
-        
+      const {fullName,email,password} = data
+      createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            updateProfile(user, {
+              displayName: fullName, photoURL: "https://avatars.githubusercontent.com/u/36831057?v=4"
+            }).then(() => {
+              const {uid,email,displayName,photoURL} = auth.currentUser
+              dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}))
+              // Profile updated!
+              // ...
+              navigate('/browse')
+            }).catch((error) => {
+              setErrorMsg(error)
+            });
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setErrorMsg(errorMessage)
+            // ..
+          });
      }
 
     }
