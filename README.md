@@ -19,6 +19,18 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 -implement signout
 -update profile
 -fetch movies from TMDB
+-bug fix of update profile image
+bug fix of redirect user to browse page is person is logged in and want to get login page
+-unsubscribed to onAuthChanged Callback into header file
+-add hardcodeed value to constant.js file
+- comment strict mode in index.js because it execute api call twice sometime just to check consistency in the application but it is only in developent mode not in when we push our code into the server this is for good purpose
+-now we will create custom hook for tmdb api data in the browse page to show data
+-custom hook for now playing movie
+-planing for main container
+-fetch data for trailer video
+-update sote with trailer  data
+-embded the youtube video make it auto play and mute
+-added tailwind css  to make main container look awesome
 ## features
 -login/sign-up 
     -Sign In
